@@ -1,0 +1,27 @@
+spring:
+    output:
+        ansi:
+          enabled: ALWAYS
+    application:
+        name: springboot-rabbitmq
+    rabbitmq:
+        host: 127.0.0.1
+        port: 5672
+        username: lkx
+        password: lkx
+        #发布确认 可设置回调消息
+        publisher-confirms: true
+        #支持发布返回
+        publisher-returns: true
+        virtual-host: /
+        listener:
+          simple:
+    #        采用手动应答
+            acknowledge-mode: manual
+    #        当前监听容器数
+            concurrency: 1
+    #        最大数
+            max-concurrency: 1
+    #        是否支持重试
+            retry:
+              enabled: true
