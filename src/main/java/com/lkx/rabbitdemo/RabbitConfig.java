@@ -81,6 +81,7 @@ public class RabbitConfig {
      * 创建rabbitTemplate 消息模板类
      * prototype原型模式:每次获取Bean的时候会有一个新的实例
      *  因为要设置回调类，所以应是prototype类型，如果是singleton类型，则回调类为最后一次设置
+     *
      * @return
      */
     @Bean
@@ -88,6 +89,9 @@ public class RabbitConfig {
     public RabbitTemplate rabbitTemplate(){
         RabbitTemplate rabbitTemplate=new RabbitTemplate(connectionFactory());
         rabbitTemplate.setMandatory(true);//返回消息必须设置为true
+        /*
+            Jackson2JsonMessageConverter如果接收到的消息属性里面没有content_type属性，或者content_type值不包含json，则转换后的结果是byte[]
+         */
 //        rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());//数据转换为json存入消息队列 不知道为什么我这里有点问题,先不用了
         //  rabbitTemplate.setReplyAddress(replyQueue().getName());
         //  rabbitTemplate.setReplyTimeout(100000000);
